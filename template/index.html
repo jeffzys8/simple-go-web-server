@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Entry Task</title>
+</head>
+<body>
+
+<h1>
+    Entry Task
+</h1>
+
+{{if .Loginned}} 
+Hello, {{ .Username }} <br><br>
+
+Nickname: {{.Nickname}} 
+<form enctype="application/x-www-form-urlencoded" action="/nickname" method="POST">
+    <input type="text" name="nickname">  <input type="submit" value="update">
+</form>
+<br>
+<img src="/picture" alt="No picture uploaded yet">
+<form enctype="multipart/form-data" action="/picture" method=post>
+    <input name="picture" type="file" accept="image/*">
+    <button>upload</button>
+</form>
+
+{{else}}
+{{if .LoginFail}}
+<text style="color: red;"> Login Fail! </text> <br>
+{{end}}
+<form enctype="application/x-www-form-urlencoded" action="/login" method="POST">
+    username: <input type="text" name="username"> <br>
+    password: <input type="password" name="password"> <br>
+    <input type="submit" value="login">
+</form>
+{{end}}
+<br>
+
+</body>
+</html>
